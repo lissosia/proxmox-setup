@@ -109,9 +109,10 @@ fi
 # 6 Restart Proxmox Web UI
 if ask_user "Restart Proxmox Web UI now?"; then
     echo "Restarting Proxmox Web UI..."
-    systemctl restart pveproxy && sleep 3
-    clear
-    if [ $? -eq 0 ]; then
+    nohup systemctl restart pveproxy >/dev/null 2>&1 &
+    sleep 5  # Allow time for restart
+    clear    # Clears any UI artifacts
+    if systemctl is-active --quiet pveproxy; then
         log_success "Proxmox Web UI restarted successfully."
     else
         log_failure "Failed to restart Proxmox Web UI."
