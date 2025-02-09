@@ -24,7 +24,7 @@ log_skip() {
     echo -e "[SKIP] $1"
 }
 
-echo "🚀 Starting Proxmox Post-Install Setup..."
+echo "Starting Proxmox Post-Install Setup..."
 
 # 1 Correct Proxmox VE Sources
 if ask_user "Correct Proxmox VE sources?"; then
